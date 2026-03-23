@@ -2,32 +2,35 @@
 
 @section('content')
 <div>
-    <h1 class="text-2xl font-bold mb-6">管理者ダッシュボード</h1>
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">管理者ダッシュボード</h1>
+        <p class="mt-1 text-sm text-gray-500">プラットフォーム全体の統計情報</p>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-lg shadow p-6 text-center">
-            <p class="text-3xl font-bold text-indigo-600">{{ $totalUsers }}</p>
-            <p class="text-gray-500 mt-1">総ユーザー数</p>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">総ユーザー数</p>
+            <p class="text-3xl font-bold text-gray-900">{{ $totalUsers }}</p>
         </div>
-        <div class="bg-white rounded-lg shadow p-6 text-center">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">受講生数</p>
             <p class="text-3xl font-bold text-green-600">{{ $totalStudents }}</p>
-            <p class="text-gray-500 mt-1">受講生数</p>
         </div>
-        <div class="bg-white rounded-lg shadow p-6 text-center">
-            <p class="text-3xl font-bold text-blue-600">{{ $totalCoaches }}</p>
-            <p class="text-gray-500 mt-1">コーチ数</p>
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">コーチ数</p>
+            <p class="text-3xl font-bold text-indigo-600">{{ $totalCoaches }}</p>
         </div>
-        <div class="bg-white rounded-lg shadow p-6 text-center">
-            <p class="text-3xl font-bold text-purple-600">{{ $totalCourses }}</p>
-            <p class="text-gray-500 mt-1">総コース数</p>
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">総コース数</p>
+            <p class="text-3xl font-bold text-gray-900">{{ $totalCourses }}</p>
         </div>
-        <div class="bg-white rounded-lg shadow p-6 text-center">
-            <p class="text-3xl font-bold text-teal-600">{{ $publishedCourses }}</p>
-            <p class="text-gray-500 mt-1">公開コース</p>
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">公開コース</p>
+            <p class="text-3xl font-bold text-green-600">{{ $publishedCourses }}</p>
         </div>
-        <div class="bg-white rounded-lg shadow p-6 text-center">
-            <p class="text-3xl font-bold text-orange-600">{{ $totalEnrollments }}</p>
-            <p class="text-gray-500 mt-1">総受講登録数</p>
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <p class="text-sm text-gray-500 mb-1">総受講登録数</p>
+            <p class="text-3xl font-bold text-indigo-600">{{ $totalEnrollments }}</p>
         </div>
     </div>
 </div>

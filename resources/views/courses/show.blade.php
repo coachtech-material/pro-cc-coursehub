@@ -2,22 +2,28 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto">
-    <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <div class="flex items-start justify-between">
-            <div>
-                <h1 class="text-2xl font-bold mb-2">{{ $course->title }}</h1>
-                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                    <span>by {{ $course->user->name }}</span>
-                    <span class="px-2 py-1 rounded text-xs
-                        {{ $course->difficulty === 'beginner' ? 'bg-green-100 text-green-800' : ($course->difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800') }}">
+    {{-- コース情報ヘッダー --}}
+    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold text-gray-900 mb-3">{{ $course->title }}</h1>
+                <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        {{ $course->user->name }}
+                    </span>
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
+                        {{ $course->difficulty === 'beginner' ? 'bg-green-50 text-green-700' : ($course->difficulty === 'intermediate' ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700') }}">
                         {{ $course->difficulty === 'beginner' ? '初級' : ($course->difficulty === 'intermediate' ? '中級' : '上級') }}
                     </span>
-                    <span>{{ $course->category->name ?? '' }}</span>
+                    @if($course->category)
+                        <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">{{ $course->category->name }}</span>
+                    @endif
                 </div>
                 @if($course->tags->isNotEmpty())
                     <div class="flex flex-wrap gap-2 mb-4">
                         @foreach($course->tags as $tag)
-                            <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">{{ $tag->name }}</span>
+                            <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700">{{ $tag->name }}</span>
                         @endforeach
                     </div>
                 @endif
@@ -25,31 +31,37 @@
 
             @if(auth()->user()->isStudent())
                 @if($enrollment)
-                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded text-sm">受講中</span>
+                    <span class="inline-flex items-center rounded-full bg-green-50 px-3 py-1.5 text-sm font-medium text-green-700">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        受講中
+                    </span>
                 @else
                     <form method="POST" action="{{ route('courses.enroll', $course) }}">
                         @csrf
-                        <button type="submit" class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">受講登録</button>
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg px-5 py-2.5 shadow-sm transition-all duration-150">受講登録</button>
                     </form>
                 @endif
             @endif
         </div>
 
-        <p class="text-gray-700">{{ $course->description }}</p>
+        <p class="text-gray-700 leading-relaxed">{{ $course->description }}</p>
     </div>
 
+    {{-- チャプター一覧 --}}
     <div class="space-y-4">
         @foreach($course->chapters->sortBy('order') as $chapter)
-            <div class="bg-white rounded-lg shadow p-4">
-                <h2 class="text-lg font-semibold mb-3">{{ $chapter->order }}. {{ $chapter->title }}</h2>
-                <ul class="space-y-2">
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+                <h2 class="text-lg font-semibold text-gray-900 mb-3">
+                    <span class="text-indigo-600 mr-1">{{ $chapter->order }}.</span> {{ $chapter->title }}
+                </h2>
+                <ul class="space-y-1">
                     @foreach($chapter->lessons->where('is_published', true)->sortBy('order') as $lesson)
-                        <li class="flex items-center justify-between py-2 px-3 hover:bg-gray-50 rounded">
-                            <a href="{{ route('courses.lessons.show', [$course, $lesson]) }}" class="text-indigo-600 hover:underline">
+                        <li class="flex items-center justify-between py-2.5 px-3 hover:bg-gray-50 rounded-lg transition-colors">
+                            <a href="{{ route('courses.lessons.show', [$course, $lesson]) }}" class="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
                                 {{ $lesson->order }}. {{ $lesson->title }}
                             </a>
                             @if($lesson->quiz)
-                                <a href="{{ route('courses.quizzes.show', [$course, $lesson->quiz]) }}" class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">小テスト</a>
+                                <a href="{{ route('courses.quizzes.show', [$course, $lesson->quiz]) }}" class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 hover:bg-indigo-100 transition-colors">小テスト</a>
                             @endif
                         </li>
                     @endforeach
