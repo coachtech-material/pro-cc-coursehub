@@ -71,6 +71,41 @@ QUEUE_CONNECTION=redis
 php artisan test
 ```
 
+## コーディング規約
+
+### バリデーション
+- Controller ではバリデーションに Form Request を使用する
+- Form Request は `app/Http/Requests/` に配置する
+
+### 命名規則
+- 変数名・メソッド名は camelCase
+- テーブル名・カラム名は snake_case
+- Controller 名は単数形 + Controller（例: CourseController）
+
+### エラーハンドリング
+- Blade 画面はリダイレクトでエラーを返す
+- フラッシュメッセージで結果を通知する
+
+### テスト
+- 新機能には Feature テストを書く
+- テストメソッド名は `test_` プレフィックス
+
+## 設計方針
+
+### Controller
+- Controller は薄く保つ。ビジネスロジックが複雑な場合は Service クラスに切り出す
+
+### Service クラス
+- 複数モデルにまたがる処理は Service クラスに集約する（例: EnrollmentService）
+- `app/Services/` に配置する
+
+### Policy
+- リソースのアクセス制御は Policy で実装する
+- Controller で `$this->authorize()` を使用する
+
+### イベント
+- 重要なドメインイベントは Event/Listener パターンで実装する
+
 ## 技術スタック
 
 - PHP 8.2
