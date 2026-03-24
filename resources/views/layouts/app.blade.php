@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'CoaKoza' }}</title>
+    <title>{{ $title ?? 'CourseHub' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 min-h-screen antialiased">
@@ -17,7 +17,7 @@
         {{-- サイドバー --}}
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:flex-shrink-0">
             <div class="flex items-center h-16 px-6 border-b border-gray-800">
-                <a href="{{ route('dashboard') }}" class="text-xl font-bold text-white tracking-tight">CoaKoza</a>
+                <a href="{{ route('dashboard') }}" class="text-xl font-bold text-white tracking-tight">CourseHub</a>
             </div>
 
             <nav class="px-3 py-4 space-y-1 overflow-y-auto h-[calc(100vh-4rem)]">
@@ -137,7 +137,7 @@
     {{-- 未認証レイアウト --}}
     <header class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-            <a href="{{ route('login') }}" class="text-xl font-bold text-gray-900 tracking-tight">CoaKoza</a>
+            <a href="{{ route('login') }}" class="text-xl font-bold text-gray-900 tracking-tight">CourseHub</a>
             <div class="flex items-center space-x-3">
                 <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors">ログイン</a>
                 <a href="{{ route('register') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg px-4 py-2.5 shadow-sm transition-all duration-150">会員登録</a>

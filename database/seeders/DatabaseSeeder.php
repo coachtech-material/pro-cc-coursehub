@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // ================================================================
             $admin = User::factory()->admin()->create([
                 'name' => '管理者',
-                'email' => 'admin@coakoza.com',
+                'email' => 'admin@coursehub.com',
             ]);
 
             $coaches = collect();
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             foreach (range(1, 3) as $i) {
                 $coaches->push(User::factory()->coach()->create([
                     'name' => $coachNames[$i - 1],
-                    'email' => "coach{$i}@coakoza.com",
+                    'email' => "coach{$i}@coursehub.com",
                 ]));
             }
 

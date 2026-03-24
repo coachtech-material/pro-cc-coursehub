@@ -1,4 +1,4 @@
-# CoaKoza
+# CourseHub
 
 オンライン学習プラットフォーム。
 

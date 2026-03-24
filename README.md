@@ -1,4 +1,4 @@
-# CoaKoza
+# CourseHub
 
 オンライン学習プラットフォーム。コーチがコースを作成し、受講生が学習・進捗管理できるシステム。
 
@@ -13,8 +13,8 @@
 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/coachtech-material/pro-cc-coakoza.git
-cd pro-cc-coakoza
+git clone https://github.com/coachtech-material/pro-cc-coursehub.git
+cd pro-cc-coursehub
 ```
 
 2. `.env` ファイルを作成

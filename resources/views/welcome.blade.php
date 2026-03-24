@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoaKoza - オンライン学習プラットフォーム</title>
+    <title>CourseHub - オンライン学習プラットフォーム</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 antialiased">
     {{-- ヘッダー --}}
     <header class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-            <span class="text-xl font-bold text-gray-900 tracking-tight">CoaKoza</span>
+            <span class="text-xl font-bold text-gray-900 tracking-tight">CourseHub</span>
             <div class="flex items-center space-x-3">
                 @if (Route::has('login'))
                     @auth
@@ -34,7 +34,7 @@
                     学びを、もっとシンプルに
                 </h1>
                 <p class="mt-6 text-lg text-gray-500 leading-relaxed">
-                    CoaKozaは、コーチと受講生をつなぐオンライン学習プラットフォームです。<br class="hidden sm:inline">
+                    CourseHubは、コーチと受講生をつなぐオンライン学習プラットフォームです。<br class="hidden sm:inline">
                     コースの作成・受講・進捗管理をひとつの場所で。
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

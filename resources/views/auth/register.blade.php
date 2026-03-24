@@ -5,7 +5,7 @@
     <div class="w-full max-w-md">
         <div class="text-center mb-8">
             <h1 class="text-2xl font-bold text-gray-900">アカウントを作成</h1>
-            <p class="mt-2 text-sm text-gray-500">CoaKozaで学習を始めましょう</p>
+            <p class="mt-2 text-sm text-gray-500">CourseHubで学習を始めましょう</p>
         </div>
 
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
