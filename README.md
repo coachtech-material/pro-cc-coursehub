@@ -110,5 +110,6 @@ php artisan test
 
 - PHP 8.2
 - Laravel 10
+- Laravel Sail（Docker 開発環境）
 - MySQL 8.0
 - Tailwind CSS
